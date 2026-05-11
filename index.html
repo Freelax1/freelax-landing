@@ -19,9 +19,9 @@
       --g4: #3da85a;
       --g5: #7dd89a;
       --g6: #dcfce7;
-      --bg:      #04100a;
-      --bg2:     #060e09;
-      --bg3:     #030908;
+      --bg:      #071009;
+      --bg2:     #0d1e10;
+      --bg3:     #050d07;
       --surface: rgba(255,255,255,0.04);
       --surface2:rgba(255,255,255,0.07);
       --border:  rgba(255,255,255,0.08);
@@ -367,102 +367,25 @@
     /* ─── TICKER ─── */
     .ticker-wrap {
       position: relative; overflow: hidden; z-index: 2;
-      padding: 22px 0 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,.025) 0%, transparent 50%, rgba(255,255,255,.015) 100%);
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      border-top: 1px solid rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(255,255,255,.05);
     }
     .ticker-wrap::before, .ticker-wrap::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 160px; z-index: 4; pointer-events: none;
+      content: ''; position: absolute; top: 0; bottom: 0; width: 200px; z-index: 3; pointer-events: none;
     }
-    .ticker-wrap::before { left: 0;  background: linear-gradient(90deg,  var(--bg) 30%, transparent); }
-    .ticker-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--bg) 30%, transparent); }
-    .t-spotlight {
-      position: absolute; inset: 0; z-index: 3; pointer-events: none;
-      background: radial-gradient(ellipse 55% 100% at 50% 50%, rgba(29,107,53,.07) 0%, transparent 70%);
+    .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--bg) 20%, transparent); }
+    .ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg) 20%, transparent); }
+    .ticker-track {
+      display: flex; white-space: nowrap; flex-shrink: 0;
+      padding: 22px 0; animation: t-story 50s linear infinite;
     }
-    .t-scan {
-      position: absolute; top: 0; bottom: 0; left: -2%; width: 2px;
-      background: linear-gradient(180deg, transparent 5%, rgba(125,216,154,.55) 50%, transparent 95%);
-      z-index: 5; pointer-events: none;
-      animation: t-scan-move 8s ease-in-out 1s infinite;
-    }
-    @keyframes t-scan-move {
-      0%   { left: -2%; opacity: 0; }
-      4%   { opacity: 1; }
-      96%  { opacity: 1; }
-      100% { left: 102%; opacity: 0; }
-    }
-    .t-row { display: flex; overflow: hidden; }
-    .t-sep {
-      height: 1px; margin: 10px 8%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 75%, transparent);
-    }
-    .t-track { display: flex; white-space: nowrap; flex-shrink: 0; }
-    .t-r1 .t-track { animation: t-left 42s linear infinite; }
-    .t-r2 .t-track { animation: t-right 26s linear infinite; }
-    .t-r3 .t-track { animation: t-left 62s linear infinite; }
-    .ticker-wrap:hover .t-track { animation-play-state: paused; }
-    @keyframes t-left  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
-    @keyframes t-right { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
-
-    /* Row 1 — feature chips */
-    .ti-f {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 0 18px; font-size: 13px; font-weight: 600;
-      color: rgba(255,255,255,.6); white-space: nowrap;
-      cursor: default; transition: color .2s;
-    }
-    .ti-f:hover { color: rgba(255,255,255,.92); }
-    .ti-ico {
-      flex-shrink: 0; width: 22px; height: 22px;
-      background: rgba(29,107,53,.24); border: 1px solid rgba(125,216,154,.14);
-      border-radius: 6px; display: flex; align-items: center; justify-content: center;
-      transition: background .2s, border-color .2s;
-    }
-    .ti-f:hover .ti-ico { background: rgba(29,107,53,.45); border-color: rgba(125,216,154,.3); }
-    .ti-ico svg { width: 11px; height: 11px; stroke: var(--g5); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .ti-s1 { display: inline-block; width: 1px; height: 13px; background: rgba(255,255,255,.07); flex-shrink: 0; vertical-align: middle; }
-
-    /* Row 2 — stat chips */
-    .ti-d {
-      display: inline-flex; align-items: baseline; gap: 6px;
-      padding: 0 26px; white-space: nowrap; cursor: default;
-    }
-    .ti-d em {
-      font-style: normal; font-family: 'DM Serif Display', serif;
-      font-size: 19px; color: var(--g5); letter-spacing: -.5px; line-height: 1;
-    }
-    .ti-d em sup  { font-size: 11px; vertical-align: super; }
-    .ti-d em small { font-size: 12px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; margin-left: 1px; }
-    .ti-d > span  { font-size: 11px; font-weight: 400; color: rgba(255,255,255,.3); line-height: 1; }
-    .ti-ds {
-      display: inline-block; align-self: center;
-      width: 3px; height: 3px; border-radius: 50%;
-      background: rgba(255,255,255,.1); flex-shrink: 0;
-      vertical-align: middle; margin: 0 8px;
-    }
-    .ti-ld {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: #4ade80; flex-shrink: 0; align-self: center;
-      margin-right: 4px; animation: t-pulse 2.2s ease infinite;
-    }
-
-    /* Row 3 — trust badges */
-    .ti-b {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 0 20px; font-size: 10px; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(255,255,255,.22); white-space: nowrap;
-      cursor: default; transition: color .2s;
-    }
-    .ti-b:hover { color: rgba(255,255,255,.45); }
-    .ti-bd { width: 5px; height: 5px; border-radius: 50%; background: rgba(125,216,154,.3); flex-shrink: 0; }
-    .ti-live .ti-bd { animation: t-pulse 2.2s ease infinite; }
-    @keyframes t-pulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(125,216,154,.5); }
-      50%      { box-shadow: 0 0 0 5px rgba(125,216,154,0); }
-    }
+    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+    @keyframes t-story { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ts-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 40px; white-space: nowrap; }
+    .ts-name { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.75); letter-spacing: -.2px; }
+    .ts-action { font-size: 14px; color: rgba(255,255,255,.3); }
+    .ts-result { font-size: 14px; font-weight: 600; color: var(--g5); letter-spacing: -.1px; }
+    .ts-div { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.1); flex-shrink: 0; margin: 0 6px; }
 
     /* ─── SHARED ─── */
     .section-label {
@@ -784,7 +707,7 @@
     .faq-item.open .faq-a { max-height: 300px; padding-bottom: 28px; }
 
     /* ─── CTA ─── */
-    .cta { background: var(--g2); padding: 140px 6%; text-align: center; position: relative; overflow: hidden; }
+    .cta { background: linear-gradient(160deg, #0a2a18 0%, #1D6B35 55%, #143d22 100%); padding: 140px 6%; text-align: center; position: relative; overflow: hidden; }
     .cta::before {
       content: '';
       position: absolute; inset: 0;
@@ -913,6 +836,49 @@
     .cta-fl-av { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,.2); color: white; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
     .cta-fl-txt { font-size: 12px; color: rgba(255,255,255,.62); }
 
+    /* ─── RADAR RINGS ─── */
+    .radar-rings { position: absolute; inset: -60px; z-index: 0; pointer-events: none; overflow: visible; }
+    .radar-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(125,216,154,0.10); animation: rdr 4s ease-out infinite; }
+    .rr1 { inset: 30px; animation-delay: 0s; }
+    .rr2 { inset: 0px; animation-delay: 1.4s; }
+    .rr3 { inset: -30px; animation-delay: 2.8s; }
+    @keyframes rdr { 0%{opacity:0;transform:scale(.9);} 20%{opacity:.9;} 100%{opacity:0;transform:scale(1.1);} }
+
+    /* ─── PROBLEM CARD STAMPS ─── */
+    .pc-stamp { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 7px; }
+    .pc-stamp::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .problem-card:nth-child(1) .pc-stamp { color: rgba(239,68,68,.5); }
+    .problem-card:nth-child(2) .pc-stamp { color: rgba(217,119,6,.5); }
+    .problem-card:nth-child(3) .pc-stamp { color: rgba(125,216,154,.4); }
+    .pc-resolve { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.05); font-size: 12px; color: rgba(125,216,154,.45); line-height: 1.6; }
+    .pc-resolve strong { color: var(--g5); font-weight: 700; }
+
+    /* ─── TAX YEAR TIMELINE ─── */
+    .tl-sec { background: var(--bg2); padding: 120px 6%; overflow: hidden; }
+    .tl-in { max-width: 1160px; margin: 0 auto; }
+    .tl-head { text-align: center; max-width: 560px; margin: 0 auto 72px; }
+    .tl-head h2 { font-family: 'DM Serif Display', serif; font-size: clamp(28px,4vw,44px); color: var(--ink); line-height: 1.15; margin-bottom: 14px; }
+    .tl-head h2 em { font-style: italic; color: var(--g5); }
+    .tl-head p { font-size: 16px; color: var(--muted); line-height: 1.65; }
+    .tl-track { position: relative; padding-top: 0; }
+    .tl-spine { position: absolute; top: 18px; left: 5%; right: 5%; height: 1px; background: linear-gradient(90deg, transparent, var(--border) 8%, var(--border) 92%, transparent); }
+    .tl-fill { position: absolute; top: 18px; left: 5%; height: 1px; width: 0; background: linear-gradient(90deg, var(--g2), var(--g5)); transition: width 2.2s cubic-bezier(0.16,1,0.3,1) .4s; }
+    .tl-fill.go { width: 90%; }
+    .tl-items { display: grid; grid-template-columns: repeat(5,1fr); gap: 0; }
+    .tl-item { display: flex; flex-direction: column; align-items: center; }
+    .tl-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--bg2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--muted); position: relative; z-index: 2; margin-bottom: 22px; transition: all .5s cubic-bezier(0.16,1,0.3,1); flex-shrink: 0; }
+    .tl-item.lit .tl-dot { background: rgba(29,107,53,.25); border-color: rgba(125,216,154,.4); color: var(--g5); box-shadow: 0 0 16px rgba(29,107,53,.3); }
+    .tl-item:last-child .tl-dot { background: var(--g2); border-color: var(--g5); color: white; box-shadow: 0 0 24px rgba(29,107,53,.5); }
+    .tl-date { font-size: 11px; font-weight: 800; color: rgba(255,255,255,.35); margin-bottom: 7px; text-align: center; letter-spacing: .03em; }
+    .tl-event { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; text-align: center; line-height: 1.35; }
+    .tl-note { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.65; max-width: 150px; }
+    .tl-item:last-child .tl-event { color: var(--g5); }
+    .tl-freelax-note { text-align: center; margin-top: 56px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .tl-fn-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(29,107,53,.18); border: 1px solid rgba(125,216,154,.2); border-radius: 100px; padding: 10px 18px; font-size: 13px; font-weight: 600; color: var(--g5); }
+    .tl-fn-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--g5); animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.4;transform:scale(.7);} }
+    @media (max-width: 768px) { .tl-items { grid-template-columns: 1fr; gap: 32px; } .tl-spine, .tl-fill { display: none; } .tl-item { flex-direction: row; gap: 16px; align-items: flex-start; } .tl-dot { margin-bottom: 0; flex-shrink: 0; } .tl-note { max-width: none; text-align: left; } .tl-date, .tl-event { text-align: left; } }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
       .calc-in { grid-template-columns: 1fr; }
@@ -1013,6 +979,7 @@
 
     <div class="hero-r" id="hr">
       <div class="hero-mockup-wrap">
+        <div class="radar-rings"><div class="radar-ring rr1"></div><div class="radar-ring rr2"></div><div class="radar-ring rr3"></div></div>
         <div class="mockup">
           <div class="m-bar">
             <div class="m-dots">
@@ -1085,92 +1052,22 @@
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <div class="t-spotlight"></div>
-  <div class="t-scan"></div>
-
-  <!-- Row 1: Feature chips — scrolls LEFT at 42s -->
-  <div class="t-row t-r1">
-    <div class="t-track">
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 13.5"/></svg></span>Real-time tax calculations</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/></svg></span>Professional invoicing</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>IR35 status tracking</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M18 7c0-5.333-8-5.333-8 0v10"/><line x1="6" y1="13" x2="15" y2="13"/><line x1="6" y1="19" x2="18" y2="19"/></svg></span>Expense management</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>AI financial insights</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>MTD ready — coming soon</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Built in the UK</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Bank-level encryption</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>Free forever plan</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>Dividend calculator</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Multiple clients</span><span class="ti-s1"></span>
-      <!-- duplicate for seamless loop -->
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 13.5"/></svg></span>Real-time tax calculations</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/></svg></span>Professional invoicing</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>IR35 status tracking</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M18 7c0-5.333-8-5.333-8 0v10"/><line x1="6" y1="13" x2="15" y2="13"/><line x1="6" y1="19" x2="18" y2="19"/></svg></span>Expense management</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>AI financial insights</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>MTD ready — coming soon</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Built in the UK</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Bank-level encryption</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>Free forever plan</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>Dividend calculator</span><span class="ti-s1"></span>
-      <span class="ti-f"><span class="ti-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>Multiple clients</span><span class="ti-s1"></span>
-    </div>
-  </div>
-
-  <div class="t-sep"></div>
-
-  <!-- Row 2: Live stat chips — scrolls RIGHT at 26s (counter-direction) -->
-  <div class="t-row t-r2">
-    <div class="t-track">
-      <span class="ti-d"><span class="ti-ld"></span><em>£2.4M</em><span>in tax saved this year</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><span class="ti-ld"></span><em>12,400<sup>+</sup></em><span>UK freelancers</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>£0</em><span>hidden fees. ever.</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><span class="ti-ld"></span><em>30<small>sec</small></em><span>IR35 assessment</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>99.9%</em><span>uptime guaranteed</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>2026/27</em><span>UK tax rates built in</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>5★</em><span>average rating</span></span><span class="ti-ds"></span>
-      <!-- duplicate for seamless loop -->
-      <span class="ti-d"><span class="ti-ld"></span><em>£2.4M</em><span>in tax saved this year</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><span class="ti-ld"></span><em>12,400<sup>+</sup></em><span>UK freelancers</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>£0</em><span>hidden fees. ever.</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><span class="ti-ld"></span><em>30<small>sec</small></em><span>IR35 assessment</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>99.9%</em><span>uptime guaranteed</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>2026/27</em><span>UK tax rates built in</span></span><span class="ti-ds"></span>
-      <span class="ti-d"><em>5★</em><span>average rating</span></span><span class="ti-ds"></span>
-    </div>
-  </div>
-
-  <div class="t-sep"></div>
-
-  <!-- Row 3: Trust & compliance badges — scrolls LEFT at 62s (slow, subtle) -->
-  <div class="t-row t-r3">
-    <div class="t-track">
-      <span class="ti-b ti-live"><span class="ti-bd"></span>HMRC Compliant</span>
-      <span class="ti-b"><span class="ti-bd"></span>GDPR Ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>Bank-grade encryption</span>
-      <span class="ti-b ti-live"><span class="ti-bd"></span>UK-built &amp; hosted</span>
-      <span class="ti-b"><span class="ti-bd"></span>Self Assessment ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>MTD ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>SSL secured</span>
-      <span class="ti-b ti-live"><span class="ti-bd"></span>HMRC-ready exports</span>
-      <span class="ti-b ti-live"><span class="ti-bd"></span>Ltd company ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>Zero hidden fees</span>
-      <span class="ti-b"><span class="ti-bd"></span>256-bit AES</span>
-      <span class="ti-b"><span class="ti-bd"></span>Sole trader friendly</span>
-      <!-- duplicate for seamless loop -->
-      <span class="ti-b ti-live"><span class="ti-bd"></span>HMRC Compliant</span>
-      <span class="ti-b"><span class="ti-bd"></span>GDPR Ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>Bank-grade encryption</span>
-      <span class="ti-b ti-live"><span class="ti-bd"></span>UK-built &amp; hosted</span>
-      <span class="ti-b"><span class="ti-bd"></span>Self Assessment ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>MTD ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>SSL secured</span>
-      <span class="ti-b ti-live"><span class="ti-bd"></span>HMRC-ready exports</span>
-      <span class="ti-b ti-live"><span class="ti-bd"></span>Ltd company ready</span>
-      <span class="ti-b"><span class="ti-bd"></span>Zero hidden fees</span>
-      <span class="ti-b"><span class="ti-bd"></span>256-bit AES</span>
-      <span class="ti-b"><span class="ti-bd"></span>Sole trader friendly</span>
-    </div>
+  <div class="ticker-track">
+    <span class="ts-item"><span class="ts-name">Marcus</span>&nbsp;<span class="ts-action">knew his exact tax bill since April —</span>&nbsp;<span class="ts-result">saved every penny of £16,240 before January.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Sarah</span>&nbsp;<span class="ts-action">claimed 3 expenses she'd missed for years —</span>&nbsp;<span class="ts-result">tax bill dropped by £340.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Tom</span>&nbsp;<span class="ts-action">had IR35 flagged before signing a new contract —</span>&nbsp;<span class="ts-result">restructured, saved £8,400/year.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Alex</span>&nbsp;<span class="ts-action">hit her tax savings goal 3 months early —</span>&nbsp;<span class="ts-result">January sorted. No stress. No scramble.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">James</span>&nbsp;<span class="ts-action">got paid 11 days faster after switching to Freelax invoicing —</span>&nbsp;<span class="ts-result">chasing invoices became someone else's job.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Rachel</span>&nbsp;<span class="ts-action">submitted her MTD quarterly return in under 2 minutes —</span>&nbsp;<span class="ts-result">without touching the HMRC portal.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Michael</span>&nbsp;<span class="ts-action">reoptimised salary vs dividends —</span>&nbsp;<span class="ts-result">£1,200 more take-home, every year.</span></span><span class="ts-div"></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ts-item"><span class="ts-name">Marcus</span>&nbsp;<span class="ts-action">knew his exact tax bill since April —</span>&nbsp;<span class="ts-result">saved every penny of £16,240 before January.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Sarah</span>&nbsp;<span class="ts-action">claimed 3 expenses she'd missed for years —</span>&nbsp;<span class="ts-result">tax bill dropped by £340.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Tom</span>&nbsp;<span class="ts-action">had IR35 flagged before signing a new contract —</span>&nbsp;<span class="ts-result">restructured, saved £8,400/year.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Alex</span>&nbsp;<span class="ts-action">hit her tax savings goal 3 months early —</span>&nbsp;<span class="ts-result">January sorted. No stress. No scramble.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">James</span>&nbsp;<span class="ts-action">got paid 11 days faster after switching to Freelax invoicing —</span>&nbsp;<span class="ts-result">chasing invoices became someone else's job.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Rachel</span>&nbsp;<span class="ts-action">submitted her MTD quarterly return in under 2 minutes —</span>&nbsp;<span class="ts-result">without touching the HMRC portal.</span></span><span class="ts-div"></span>
+    <span class="ts-item"><span class="ts-name">Michael</span>&nbsp;<span class="ts-action">reoptimised salary vs dividends —</span>&nbsp;<span class="ts-result">£1,200 more take-home, every year.</span></span><span class="ts-div"></span>
   </div>
 </div>
 
@@ -1189,22 +1086,28 @@
         <div class="problem-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         </div>
+        <div class="pc-stamp">Tax surprise</div>
         <div class="problem-title">You don't know your tax bill until January</div>
         <div class="problem-desc">HMRC sends the bill months after you've already spent the money. The average UK freelancer underpays by £4,200 a year — and has to scramble to cover it.</div>
+        <div class="pc-resolve">Freelax fixes this: <strong>your tax pot updates every time you invoice.</strong></div>
       </div>
       <div class="problem-card reveal d2">
         <div class="problem-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5H15.5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8H3.5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11H8.5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>
         </div>
+        <div class="pc-stamp">IR35 risk</div>
         <div class="problem-title">IR35 is complex and the stakes are high</div>
         <div class="problem-desc">Getting your IR35 status wrong costs an average of £23,000 per year in unnecessary tax. Most freelancers guess — or don't check at all.</div>
+        <div class="pc-resolve">Freelax fixes this: <strong>30-second IR35 assessment, per contract, built in.</strong></div>
       </div>
       <div class="problem-card reveal d3">
         <div class="problem-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
+        <div class="pc-stamp">Admin overload</div>
         <div class="problem-title">Spreadsheets break. Accountants are expensive.</div>
         <div class="problem-desc">The average UK freelancer spends 6 hours a month on admin. Good accountants cost £150+/hour. Freelax does it automatically for less than a coffee a day.</div>
+        <div class="pc-resolve">Freelax fixes this: <strong>automated bookkeeping, invoicing and filing in one place.</strong></div>
       </div>
     </div>
     <div class="problem-arrow reveal">↓ Here's how Freelax solves all of this</div>
@@ -1491,6 +1394,61 @@
     </div>
     <div class="reveal d3">
       <a href="mailto:hello@freelax.co.uk?subject=Notify me when MTD is live" class="btn-hero mag" style="white-space:nowrap;">Get notified when live →</a>
+    </div>
+  </div>
+</div>
+
+<div class="sec-div"></div>
+
+<!-- TAX YEAR TIMELINE -->
+<div class="tl-sec">
+  <div class="tl-in">
+    <div class="tl-head reveal">
+      <div class="section-label">Always on schedule</div>
+      <h2>Stay ahead of every<br/><em>UK tax deadline.</em></h2>
+      <p>Most freelancers scramble in January. Freelax tracks where you are in the tax year, alerts you before deadlines hit, and makes sure you're never caught short.</p>
+    </div>
+    <div class="tl-track" id="tl-track">
+      <div class="tl-spine"></div>
+      <div class="tl-fill" id="tl-fill"></div>
+      <div class="tl-items">
+        <div class="tl-item" id="tl-i0">
+          <div class="tl-dot">Apr</div>
+          <div class="tl-date">6 April 2026</div>
+          <div class="tl-event">New tax year begins</div>
+          <div class="tl-note">Fresh rates loaded. Freelax resets your annual tax pot.</div>
+        </div>
+        <div class="tl-item" id="tl-i1">
+          <div class="tl-dot">Jul</div>
+          <div class="tl-date">31 July 2026</div>
+          <div class="tl-event">Payment on account</div>
+          <div class="tl-note">First advance payment due. Freelax flags the exact amount.</div>
+        </div>
+        <div class="tl-item" id="tl-i2">
+          <div class="tl-dot">Oct</div>
+          <div class="tl-date">5 October 2026</div>
+          <div class="tl-event">Register for Self Assessment</div>
+          <div class="tl-note">Deadline to register if you're new to self-employment this year.</div>
+        </div>
+        <div class="tl-item" id="tl-i3">
+          <div class="tl-dot">Dec</div>
+          <div class="tl-date">30 December 2026</div>
+          <div class="tl-event">Online return deadline</div>
+          <div class="tl-note">File online to collect underpayments via PAYE — Freelax guides you.</div>
+        </div>
+        <div class="tl-item" id="tl-i4">
+          <div class="tl-dot">✓</div>
+          <div class="tl-date">31 January 2027</div>
+          <div class="tl-event">Self Assessment &amp; payment due</div>
+          <div class="tl-note">Zero surprises. Your pot is full. You're ready. Freelax made sure of it.</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-freelax-note reveal">
+      <div class="tl-fn-pill">
+        <span class="tl-fn-dot"></span>
+        Freelax monitors every milestone and tells you exactly what's due — months in advance.
+      </div>
     </div>
   </div>
 </div>
@@ -1882,6 +1840,29 @@
   if (calcInpEl) {
     calcInpEl.addEventListener('input', runCalc);
     runCalc();
+  }
+
+  // ── TAX YEAR TIMELINE ──
+  const tlTrack = document.getElementById('tl-track');
+  if (tlTrack) {
+    const tlDeadlines = [
+      new Date('2026-04-06'), new Date('2026-07-31'),
+      new Date('2026-10-05'), new Date('2026-12-30'), new Date('2027-01-31')
+    ];
+    const today = new Date();
+    const tlObs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      tlObs.disconnect();
+      const fill = document.getElementById('tl-fill');
+      const items = tlTrack.querySelectorAll('.tl-item');
+      tlDeadlines.forEach((d, i) => {
+        if (today >= d) {
+          setTimeout(() => items[i] && items[i].classList.add('lit'), i * 200 + 600);
+        }
+      });
+      setTimeout(() => { if (fill) fill.classList.add('go'); }, 400);
+    }, { threshold: 0.3 });
+    tlObs.observe(tlTrack);
   }
 
   // ── FAQ ──
