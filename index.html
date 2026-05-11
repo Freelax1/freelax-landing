@@ -377,15 +377,14 @@
     .ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--bg) 20%, transparent); }
     .ticker-track {
       display: flex; white-space: nowrap; flex-shrink: 0;
-      padding: 22px 0; animation: t-story 50s linear infinite;
+      padding: 0; animation: t-scroll 55s linear infinite;
     }
     .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
-    @keyframes t-story { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .ts-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 40px; white-space: nowrap; }
-    .ts-name { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.75); letter-spacing: -.2px; }
-    .ts-action { font-size: 14px; color: rgba(255,255,255,.3); }
-    .ts-result { font-size: 14px; font-weight: 600; color: var(--g5); letter-spacing: -.1px; }
-    .ts-div { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.1); flex-shrink: 0; margin: 0 6px; }
+    @keyframes t-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .td-item { display: inline-flex; align-items: center; gap: 12px; padding: 20px 38px; white-space: nowrap; border-right: 1px solid rgba(255,255,255,.05); }
+    .td-key { font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.25); flex-shrink: 0; }
+    .td-val { font-size: 16px; font-weight: 800; color: var(--g5); letter-spacing: -.4px; font-variant-numeric: tabular-nums; line-height: 1; }
+    .td-desc { font-size: 11px; color: rgba(255,255,255,.3); padding-left: 2px; }
 
     /* ─── SHARED ─── */
     .section-label {
@@ -1053,21 +1052,31 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track">
-    <span class="ts-item"><span class="ts-name">Marcus</span>&nbsp;<span class="ts-action">knew his exact tax bill since April —</span>&nbsp;<span class="ts-result">saved every penny of £16,240 before January.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Sarah</span>&nbsp;<span class="ts-action">claimed 3 expenses she'd missed for years —</span>&nbsp;<span class="ts-result">tax bill dropped by £340.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Tom</span>&nbsp;<span class="ts-action">had IR35 flagged before signing a new contract —</span>&nbsp;<span class="ts-result">restructured, saved £8,400/year.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Alex</span>&nbsp;<span class="ts-action">hit her tax savings goal 3 months early —</span>&nbsp;<span class="ts-result">January sorted. No stress. No scramble.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">James</span>&nbsp;<span class="ts-action">got paid 11 days faster after switching to Freelax invoicing —</span>&nbsp;<span class="ts-result">chasing invoices became someone else's job.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Rachel</span>&nbsp;<span class="ts-action">submitted her MTD quarterly return in under 2 minutes —</span>&nbsp;<span class="ts-result">without touching the HMRC portal.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Michael</span>&nbsp;<span class="ts-action">reoptimised salary vs dividends —</span>&nbsp;<span class="ts-result">£1,200 more take-home, every year.</span></span><span class="ts-div"></span>
+    <span class="td-item"><span class="td-key">Personal Allowance</span><span class="td-val">£12,570</span><span class="td-desc">Tax-free income every year — Freelax tracks every penny of it.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Threshold</span><span class="td-val">£50,270</span><span class="td-desc">Cross this and income tax jumps to 40%. Know before you invoice.</span></span>
+    <span class="td-item"><span class="td-key">Dividend Allowance</span><span class="td-val">£500</span><span class="td-desc">Tax-free dividends for Ltd directors. Freelax optimises your split.</span></span>
+    <span class="td-item"><span class="td-key">Basic Rate Tax</span><span class="td-val">20%</span><span class="td-desc">On income between £12,571 and £50,270. 2026/27 rates.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Tax</span><span class="td-val">40%</span><span class="td-desc">On everything above £50,270. Most freelancers don't see it coming.</span></span>
+    <span class="td-item"><span class="td-key">Class 4 NI</span><span class="td-val">9%</span><span class="td-desc">On self-employed profits between £12,570–£50,270. On top of income tax.</span></span>
+    <span class="td-item"><span class="td-key">Self Assessment</span><span class="td-val">31 Jan</span><span class="td-desc">The deadline that catches UK freelancers every single year.</span></span>
+    <span class="td-item"><span class="td-key">Tax Year Start</span><span class="td-val">6 Apr</span><span class="td-desc">The clock resets. Freelax resets with it.</span></span>
+    <span class="td-item"><span class="td-key">Trading Allowance</span><span class="td-val">£1,000</span><span class="td-desc">Earn up to this with no tax and no Self Assessment form required.</span></span>
+    <span class="td-item"><span class="td-key">Corp Tax (Small Profits)</span><span class="td-val">19%</span><span class="td-desc">On Ltd company profits up to £50k. Freelax calculates it live.</span></span>
+    <span class="td-item"><span class="td-key">MTD Submissions</span><span class="td-val">4× / year</span><span class="td-desc">Quarterly digital returns. Mandatory for all. Freelax files them.</span></span>
+    <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
     <!-- duplicate for seamless loop -->
-    <span class="ts-item"><span class="ts-name">Marcus</span>&nbsp;<span class="ts-action">knew his exact tax bill since April —</span>&nbsp;<span class="ts-result">saved every penny of £16,240 before January.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Sarah</span>&nbsp;<span class="ts-action">claimed 3 expenses she'd missed for years —</span>&nbsp;<span class="ts-result">tax bill dropped by £340.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Tom</span>&nbsp;<span class="ts-action">had IR35 flagged before signing a new contract —</span>&nbsp;<span class="ts-result">restructured, saved £8,400/year.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Alex</span>&nbsp;<span class="ts-action">hit her tax savings goal 3 months early —</span>&nbsp;<span class="ts-result">January sorted. No stress. No scramble.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">James</span>&nbsp;<span class="ts-action">got paid 11 days faster after switching to Freelax invoicing —</span>&nbsp;<span class="ts-result">chasing invoices became someone else's job.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Rachel</span>&nbsp;<span class="ts-action">submitted her MTD quarterly return in under 2 minutes —</span>&nbsp;<span class="ts-result">without touching the HMRC portal.</span></span><span class="ts-div"></span>
-    <span class="ts-item"><span class="ts-name">Michael</span>&nbsp;<span class="ts-action">reoptimised salary vs dividends —</span>&nbsp;<span class="ts-result">£1,200 more take-home, every year.</span></span><span class="ts-div"></span>
+    <span class="td-item"><span class="td-key">Personal Allowance</span><span class="td-val">£12,570</span><span class="td-desc">Tax-free income every year — Freelax tracks every penny of it.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Threshold</span><span class="td-val">£50,270</span><span class="td-desc">Cross this and income tax jumps to 40%. Know before you invoice.</span></span>
+    <span class="td-item"><span class="td-key">Dividend Allowance</span><span class="td-val">£500</span><span class="td-desc">Tax-free dividends for Ltd directors. Freelax optimises your split.</span></span>
+    <span class="td-item"><span class="td-key">Basic Rate Tax</span><span class="td-val">20%</span><span class="td-desc">On income between £12,571 and £50,270. 2026/27 rates.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Tax</span><span class="td-val">40%</span><span class="td-desc">On everything above £50,270. Most freelancers don't see it coming.</span></span>
+    <span class="td-item"><span class="td-key">Class 4 NI</span><span class="td-val">9%</span><span class="td-desc">On self-employed profits between £12,570–£50,270. On top of income tax.</span></span>
+    <span class="td-item"><span class="td-key">Self Assessment</span><span class="td-val">31 Jan</span><span class="td-desc">The deadline that catches UK freelancers every single year.</span></span>
+    <span class="td-item"><span class="td-key">Tax Year Start</span><span class="td-val">6 Apr</span><span class="td-desc">The clock resets. Freelax resets with it.</span></span>
+    <span class="td-item"><span class="td-key">Trading Allowance</span><span class="td-val">£1,000</span><span class="td-desc">Earn up to this with no tax and no Self Assessment form required.</span></span>
+    <span class="td-item"><span class="td-key">Corp Tax (Small Profits)</span><span class="td-val">19%</span><span class="td-desc">On Ltd company profits up to £50k. Freelax calculates it live.</span></span>
+    <span class="td-item"><span class="td-key">MTD Submissions</span><span class="td-val">4× / year</span><span class="td-desc">Quarterly digital returns. Mandatory for all. Freelax files them.</span></span>
+    <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
   </div>
 </div>
 
