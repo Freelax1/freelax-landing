@@ -826,8 +826,96 @@
     .footer-links a { font-size: 11px; color: rgba(255,255,255,.15); text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: rgba(255,255,255,.4); }
 
+    /* ─── FREELAX LIVE MESSAGE (hero pill) ─── */
+    .fl-live-msg {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(29,107,53,.1); border: 1px solid rgba(125,216,154,.22);
+      padding: 7px 14px 7px 7px; border-radius: 100px; margin-bottom: 36px;
+      animation: hero-h1-in 0.6s cubic-bezier(0.16,1,0.3,1) both;
+      max-width: 100%;
+    }
+    .fl-av {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--g2); color: white; font-size: 11px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(125,216,154,.15);
+    }
+    .fl-live-inner { display: flex; align-items: center; gap: 6px; overflow: hidden; }
+    .fl-live-tag { font-size: 10px; font-weight: 700; color: var(--g5); text-transform: uppercase; letter-spacing: .1em; white-space: nowrap; flex-shrink: 0; }
+    .fl-live-text { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.65); white-space: nowrap; overflow: hidden; min-width: 0; }
+    .fl-caret { display: inline-block; width: 1px; height: 12px; background: var(--g5); margin-left: 1px; vertical-align: middle; animation: caret-blink .7s step-end infinite; flex-shrink: 0; }
+    @keyframes caret-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* ─── INTERACTIVE TAX CALCULATOR ─── */
+    .calc-sec { background: var(--bg3); padding: 120px 6%; }
+    .calc-in { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 5fr 6fr; gap: 80px; align-items: center; }
+    .calc-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+      padding: 36px; box-shadow: 0 40px 100px rgba(0,0,0,.5); position: relative; overflow: hidden;
+    }
+    .calc-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(125,216,154,.2), transparent);
+    }
+    .calc-row { margin-bottom: 20px; }
+    .calc-label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .calc-inp-wrap { position: relative; display: flex; align-items: center; }
+    .calc-pfx { position: absolute; left: 14px; font-size: 18px; font-weight: 700; color: var(--g5); pointer-events: none; z-index: 1; }
+    .calc-inp {
+      width: 100%; background: rgba(255,255,255,.05); border: 1px solid var(--border2);
+      border-radius: 10px; padding: 14px 14px 14px 32px;
+      font-size: 22px; font-weight: 800; color: white; font-family: 'DM Serif Display', serif;
+      letter-spacing: -.5px; outline: none; transition: border-color .2s, box-shadow .2s;
+      -moz-appearance: textfield;
+    }
+    .calc-inp::-webkit-outer-spin-button,.calc-inp::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .calc-inp:focus { border-color: rgba(125,216,154,.4); box-shadow: 0 0 0 3px rgba(29,107,53,.2); }
+    .calc-inp::placeholder { color: rgba(255,255,255,.18); }
+    .calc-toggle { display: flex; gap: 6px; }
+    .calc-tog {
+      flex: 1; padding: 9px; border-radius: 8px; border: 1px solid var(--border);
+      background: transparent; color: var(--muted); font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all .2s; font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .calc-tog.active { background: rgba(29,107,53,.25); border-color: rgba(125,216,154,.3); color: var(--g5); }
+    .calc-tog:hover:not(.active) { border-color: var(--border2); color: rgba(255,255,255,.6); }
+    .calc-divider { height: 1px; background: var(--border); margin: 24px 0; }
+    .calc-result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+    .calc-result-row:last-child { border-bottom: none; }
+    .calc-rl { font-size: 13px; color: var(--muted); }
+    .calc-rv { font-size: 17px; font-weight: 800; color: white; letter-spacing: -.5px; font-family: 'DM Serif Display', serif; transition: color .3s; }
+    .calc-rv.r { color: #fb7185; }
+    .calc-rv.g { color: var(--g5); }
+    .calc-fl-msg { display: flex; align-items: flex-start; gap: 10px; margin-top: 20px; padding: 14px 16px; background: rgba(29,107,53,.1); border: 1px solid rgba(125,216,154,.14); border-radius: 12px; }
+    .calc-fl-av { width: 22px; height: 22px; border-radius: 50%; background: var(--g2); color: white; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .calc-fl-txt { font-size: 12px; line-height: 1.65; color: rgba(255,255,255,.5); transition: opacity .2s; }
+
+    /* ─── FEAT TIPS ─── */
+    .feat-tip {
+      margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.05);
+      font-size: 12px; color: rgba(125,216,154,.5);
+      display: flex; align-items: center; gap: 5px;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity .2s, transform .2s;
+    }
+    .feat:hover .feat-tip { opacity: 1; transform: none; }
+
+    /* ─── FREELAX INSIGHT BAND ─── */
+    .fl-band { background: rgba(29,107,53,.07); border-top: 1px solid rgba(125,216,154,.1); border-bottom: 1px solid rgba(125,216,154,.1); padding: 28px 6%; }
+    .fl-band-in { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 18px; }
+    .fl-band-av { width: 38px; height: 38px; border-radius: 50%; background: var(--g2); color: white; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(125,216,154,.15); }
+    .fl-band-msg { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.42); font-style: italic; flex: 1; }
+    .fl-band-msg strong { color: var(--g5); font-style: normal; font-weight: 700; }
+    .fl-band-tag { font-size: 10px; font-weight: 700; color: rgba(125,216,154,.35); text-transform: uppercase; letter-spacing: .1em; white-space: nowrap; }
+
+    /* ─── CTA FREELAX NOTE ─── */
+    .cta-fl { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); padding: 7px 16px 7px 7px; border-radius: 100px; }
+    .cta-fl-av { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,.2); color: white; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .cta-fl-txt { font-size: 12px; color: rgba(255,255,255,.62); }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
+      .calc-in { grid-template-columns: 1fr; }
       .hero-wrap { grid-template-columns: 1fr; }
       .hero-r { display: none; }
       .features-top { grid-template-columns: 1fr; gap: 24px; }
@@ -890,9 +978,12 @@
   <div class="orb orb-3"></div>
   <div class="hero-wrap">
     <div class="hero-l">
-      <div class="hero-pill">
-        <div class="hero-pill-dot"></div>
-        Built for UK self-employed
+      <div class="fl-live-msg">
+        <div class="fl-av">F</div>
+        <div class="fl-live-inner">
+          <span class="fl-live-tag">Freelax</span>
+          <span class="fl-live-text" id="fl-msg"></span><span class="fl-caret"></span>
+        </div>
       </div>
 
       <h1 class="hero-h1">
@@ -1142,6 +1233,7 @@
         </div>
         <div class="feat-title">Real-time tax calculations</div>
         <div class="feat-desc">See your exact Income Tax, NI, dividend tax and student loan obligations update live as you invoice. 2026/27 UK rates, updated every April.</div>
+        <div class="feat-tip">⚡ Updates the instant you log income — no manual syncing, ever.</div>
       </div>
       <div class="feat reveal d2">
         <div class="feat-line"></div>
@@ -1150,6 +1242,7 @@
         </div>
         <div class="feat-title">Professional invoicing</div>
         <div class="feat-desc">Create, send and chase invoices with automatic VAT, Stripe payment links, PDF attachments and smart reminders. Get paid faster.</div>
+        <div class="feat-tip">⚡ Freelax users get paid on average 8 days faster.</div>
       </div>
       <div class="feat reveal d3">
         <div class="feat-line"></div>
@@ -1158,6 +1251,7 @@
         </div>
         <div class="feat-title">IR35 status tracking</div>
         <div class="feat-desc">The only UK freelancer tool with built-in IR35 assessment per project. Know your status before your client does — and protect your take-home.</div>
+        <div class="feat-tip">⚡ Assessed in under 30 seconds. One wrong answer costs £23k/year.</div>
       </div>
       <div class="feat reveal d1">
         <div class="feat-line"></div>
@@ -1166,6 +1260,7 @@
         </div>
         <div class="feat-title">Expense tracking</div>
         <div class="feat-desc">Scan receipts with AI, categorise correctly for HMRC and watch your tax bill reduce in real time. HMRC-ready CSV and Excel exports.</div>
+        <div class="feat-tip">⚡ AI finds categories you'd miss — saves £340 on average.</div>
       </div>
       <div class="feat reveal d2">
         <div class="feat-line"></div>
@@ -1174,6 +1269,7 @@
         </div>
         <div class="feat-title">Making Tax Digital</div>
         <div class="feat-desc">MTD is mandatory for sole traders over £50k. Freelax is building direct HMRC integration so you submit quarterly returns without leaving the app.</div>
+        <div class="feat-tip">⚡ Quarterly submissions straight to HMRC — no portal, no stress.</div>
       </div>
       <div class="feat reveal d3">
         <div class="feat-line"></div>
@@ -1182,6 +1278,57 @@
         </div>
         <div class="feat-title">AI financial insights</div>
         <div class="feat-desc">Plain-English explanations of your tax position, smart expense categorisation, Self Assessment narrative prep and proactive alerts.</div>
+        <div class="feat-tip">⚡ Explains your tax in plain English — no jargon, ever.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-div"></div>
+
+<!-- CALCULATOR -->
+<div class="calc-sec">
+  <div class="calc-in">
+    <div class="reveal-l">
+      <div class="section-label">Try it now</div>
+      <h2 class="display" style="margin-bottom:16px;">See what Freelax<br/><em>would tell you.</em></h2>
+      <p class="lead">Type in what you earn. Freelax calculates your exact UK tax position instantly — before you sign up for anything.</p>
+      <p class="lead" style="margin-top:16px;font-size:14px;">Based on 2026/27 UK tax rates: Income Tax, Class 4 NI and dividend tax. Updated every April.</p>
+    </div>
+    <div class="reveal-r">
+      <div class="calc-card">
+        <div class="calc-row">
+          <label class="calc-label" for="calc-income">Annual freelance income</label>
+          <div class="calc-inp-wrap">
+            <span class="calc-pfx">£</span>
+            <input class="calc-inp" id="calc-income" type="number" placeholder="65000" value="65000" min="0" max="500000" />
+          </div>
+        </div>
+        <div class="calc-row" style="margin-bottom:0">
+          <label class="calc-label">How do you work?</label>
+          <div class="calc-toggle">
+            <button class="calc-tog active" id="tog-sole" onclick="setCalcType('sole')">Sole trader</button>
+            <button class="calc-tog" id="tog-ltd" onclick="setCalcType('ltd')">Ltd company</button>
+          </div>
+        </div>
+        <div class="calc-divider"></div>
+        <div class="calc-result-row">
+          <span class="calc-rl">Estimated annual tax</span>
+          <span class="calc-rv r" id="cr-tax">—</span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-rl">Monthly set-aside needed</span>
+          <span class="calc-rv" id="cr-monthly">—</span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-rl">Safe to spend (monthly)</span>
+          <span class="calc-rv g" id="cr-spend">—</span>
+        </div>
+        <div class="calc-fl-msg">
+          <div class="calc-fl-av">F</div>
+          <div class="calc-fl-txt" id="calc-fl-txt">Enter your income above and I'll calculate your exact position.</div>
+        </div>
+        <a href="https://app.freelax.co.uk/auth/signup" class="btn-hero mag" style="width:100%;justify-content:center;margin-top:20px;text-decoration:none;">Track this for free →</a>
       </div>
     </div>
   </div>
@@ -1409,6 +1556,15 @@
   </div>
 </div>
 
+<!-- FREELAX INSIGHT BAND -->
+<div class="fl-band">
+  <div class="fl-band-in">
+    <div class="fl-band-av">F</div>
+    <p class="fl-band-msg">"The average Freelax user discovers they've been under-saving for tax by <strong>£2,800/year</strong>. The good news? They find out before January — not after."</p>
+    <span class="fl-band-tag">Freelax AI</span>
+  </div>
+</div>
+
 <div class="sec-div"></div>
 
 <!-- TESTIMONIALS -->
@@ -1497,6 +1653,10 @@
 <!-- CTA -->
 <div class="cta">
   <div class="cta-in reveal">
+    <div class="cta-fl">
+      <div class="cta-fl-av">F</div>
+      <span class="cta-fl-txt">You're 2 minutes from knowing your exact tax position.</span>
+    </div>
     <div class="cta-eyebrow">Start for free today</div>
     <h2 class="cta-h">Stop guessing.<br/><em>Start knowing.</em></h2>
     <p class="cta-sub">Join UK freelancers, contractors and limited company directors who know exactly what they owe — before the bill arrives.</p>
@@ -1631,6 +1791,98 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.counter').forEach(el => cio.observe(el));
+
+  // ── FREELAX TYPEWRITER (hero live message) ──
+  const FL_MSGS = [
+    "Your tax pot is 65% full. Great progress!",
+    "IR35 alert: your current contract needs reviewing.",
+    "You've saved 6 hours on admin this month.",
+    "Safe to spend this week: £1,280 after tax.",
+    "Self Assessment deadline: 87 days away. On track.",
+    "Invoice INV-0042 is 5 days overdue. Chase it?",
+    "New 2026/27 tax rates loaded. Your bill updated."
+  ];
+  let fmIdx = 0, fmChar = 0, fmDel = false;
+  const flMsgEl = document.getElementById('fl-msg');
+  if (flMsgEl) {
+    function typeFL() {
+      const msg = FL_MSGS[fmIdx];
+      if (!fmDel) {
+        flMsgEl.textContent = msg.slice(0, ++fmChar);
+        if (fmChar === msg.length) { fmDel = true; setTimeout(typeFL, 2800); }
+        else setTimeout(typeFL, 38);
+      } else {
+        flMsgEl.textContent = msg.slice(0, --fmChar);
+        if (fmChar === 0) { fmDel = false; fmIdx = (fmIdx + 1) % FL_MSGS.length; setTimeout(typeFL, 420); }
+        else setTimeout(typeFL, 16);
+      }
+    }
+    setTimeout(typeFL, 1100);
+  }
+
+  // ── UK TAX CALCULATOR ──
+  let calcType = 'sole';
+  function setCalcType(t) {
+    calcType = t;
+    document.getElementById('tog-sole').classList.toggle('active', t === 'sole');
+    document.getElementById('tog-ltd').classList.toggle('active', t === 'ltd');
+    runCalc();
+  }
+  function ukTaxCalc(income, type) {
+    const PA = 12570, BR_TOP = 50270;
+    if (type === 'sole') {
+      const t1 = Math.max(0, Math.min(income, BR_TOP) - PA) * 0.20;
+      const t2 = Math.max(0, income - BR_TOP) * 0.40;
+      const n1 = Math.max(0, Math.min(income, BR_TOP) - PA) * 0.09;
+      const n2 = Math.max(0, income - BR_TOP) * 0.02;
+      const total = Math.round(t1 + t2 + n1 + n2);
+      return { tax: total, monthly: Math.round(total / 12), spend: Math.round((income - total) / 12) };
+    } else {
+      const sal = Math.min(income, 9100);
+      const profit = Math.max(0, income - sal);
+      const ctRate = profit <= 50000 ? 0.19 : 0.19 + Math.min(profit - 50000, 200000) / 200000 * 0.06;
+      const ct = Math.round(profit * ctRate);
+      const divs = profit - ct;
+      const taxableDivs = Math.max(0, divs - 500);
+      const brRemain = Math.max(0, BR_TOP - sal);
+      const dt = Math.round(Math.min(taxableDivs, brRemain) * 0.0875 + Math.max(0, taxableDivs - brRemain) * 0.3375);
+      const total = ct + dt;
+      const takehome = sal + divs - dt;
+      return { tax: Math.round(total), monthly: Math.round(total / 12), spend: Math.round(takehome / 12) };
+    }
+  }
+  function gbp(n) { return '£' + Math.max(0, n).toLocaleString('en-GB'); }
+  function runCalc() {
+    const el = document.getElementById('calc-income');
+    if (!el) return;
+    const income = Math.max(0, parseInt(el.value) || 0);
+    const r = ukTaxCalc(income, calcType);
+    document.getElementById('cr-tax').textContent = gbp(r.tax);
+    document.getElementById('cr-monthly').textContent = gbp(r.monthly);
+    document.getElementById('cr-spend').textContent = gbp(r.spend);
+    const msgEl = document.getElementById('calc-fl-txt');
+    if (!msgEl) return;
+    if (income === 0) {
+      msgEl.textContent = "Enter your income above and I'll calculate your exact position.";
+    } else if (income < 12570) {
+      msgEl.textContent = "At this level you won't pay Income Tax, but tracking expenses now builds good habits — and your position can change mid-year.";
+    } else if (calcType === 'sole' && income >= 50000) {
+      const ltdR = ukTaxCalc(income, 'ltd');
+      const saving = r.tax - ltdR.tax;
+      if (saving > 0) {
+        msgEl.textContent = `As a sole trader at ${gbp(income)} you'd owe ${gbp(r.tax)}/year. Restructuring as a Ltd company could save you roughly ${gbp(saving)} — I can model both scenarios live inside the app.`;
+      } else {
+        msgEl.textContent = `At ${gbp(income)} you'll owe ${gbp(r.tax)}/year in tax. I'd set aside ${gbp(r.monthly)}/month — leaving you ${gbp(r.spend)}/month safe to spend.`;
+      }
+    } else {
+      msgEl.textContent = `At ${gbp(income)} as a ${calcType === 'sole' ? 'sole trader' : 'Ltd company director'}, set aside ${gbp(r.monthly)}/month for tax. That leaves you ${gbp(r.spend)}/month safe to spend — and I track every penny in real time.`;
+    }
+  }
+  const calcInpEl = document.getElementById('calc-income');
+  if (calcInpEl) {
+    calcInpEl.addEventListener('input', runCalc);
+    runCalc();
+  }
 
   // ── FAQ ──
   function toggleFaq(btn) {
