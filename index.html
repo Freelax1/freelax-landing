@@ -60,18 +60,6 @@
       transition: width 0.08s linear;
     }
 
-    /* ─── CUSTOM CURSOR ─── */
-    .cur {
-      position: fixed; top: 0; left: 0; z-index: 8999;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--g5); pointer-events: none;
-      transition: width .25s, height .25s, opacity .25s, background .25s;
-      transform: translate(-50%,-50%);
-      mix-blend-mode: difference;
-    }
-    .cur.big { width: 36px; height: 36px; background: rgba(125,216,154,0.3); }
-    @media (hover: none) { .cur { display: none; } }
-
     /* ─── ANIMATIONS ─── */
     .reveal, .reveal-l, .reveal-r, .reveal-s {
       opacity: 0;
@@ -917,7 +905,6 @@
 <div id="spb"></div>
 
 <!-- CUSTOM CURSOR -->
-<div class="cur" id="cur"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -1696,21 +1683,6 @@
   // ── NAV ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 50), { passive: true });
-
-  // ── CUSTOM CURSOR ──
-  const cur = document.getElementById('cur');
-  let cx = 0, cy = 0, tx = 0, ty = 0;
-  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-  (function tick() {
-    cx += (tx - cx) * 0.14;
-    cy += (ty - cy) * 0.14;
-    cur.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-    requestAnimationFrame(tick);
-  })();
-  document.querySelectorAll('a,button,[onclick]').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('big'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-  });
 
   // ── MAGNETIC BUTTONS ──
   document.querySelectorAll('.mag').forEach(el => {
