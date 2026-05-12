@@ -12,6 +12,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
+      /* Green palette */
       --g0: #020b05;
       --g1: #0b1f10;
       --g2: #1D6B35;
@@ -19,16 +20,29 @@
       --g4: #3da85a;
       --g5: #7dd89a;
       --g6: #dcfce7;
-      --bg:      #071009;
-      --bg2:     #0d1e10;
-      --bg3:     #050d07;
-      --surface: rgba(255,255,255,0.04);
-      --surface2:rgba(255,255,255,0.07);
-      --border:  rgba(255,255,255,0.08);
-      --border2: rgba(255,255,255,0.13);
-      --ink:  rgba(255,255,255,0.95);
-      --ink2: rgba(255,255,255,0.82);
-      --muted:rgba(255,255,255,0.45);
+
+      /* Warm amber/gold palette */
+      --amber:        #c9973a;
+      --amber-lit:    #e0b455;
+      --amber-dim:    rgba(201,151,58,0.10);
+      --amber-border: rgba(201,151,58,0.20);
+      --amber-glow:   rgba(201,151,58,0.07);
+
+      /* Backgrounds — slightly warmed */
+      --bg:      #080f0a;
+      --bg2:     #0d1b10;
+      --bg3:     #060c08;
+
+      /* Warm glass surfaces */
+      --surface: rgba(255,244,218,0.042);
+      --surface2:rgba(255,244,218,0.072);
+      --border:  rgba(255,244,218,0.09);
+      --border2: rgba(255,244,218,0.15);
+
+      /* Warm cream text — not cold blue-white */
+      --ink:  rgba(255,249,238,0.95);
+      --ink2: rgba(255,249,238,0.80);
+      --muted:rgba(255,248,234,0.40);
     }
 
     html { scroll-behavior: smooth; }
@@ -132,9 +146,16 @@
       top: 50%; left: 50%; transform: translate(-50%,-50%);
       animation: orb3 8s ease-in-out infinite alternate;
     }
+    .orb-4 {
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(201,151,58,0.16) 0%, transparent 70%);
+      bottom: -80px; right: 5%;
+      animation: orb4 13s ease-in-out infinite alternate;
+    }
     @keyframes orb1 { from { transform: translate(0,0) scale(1); } to { transform: translate(60px,40px) scale(1.08); } }
     @keyframes orb2 { from { transform: translate(0,0) scale(1); } to { transform: translate(-40px,30px) scale(1.12); } }
     @keyframes orb3 { from { transform: translate(-50%,-50%) scale(1); } to { transform: translate(-50%,-50%) scale(1.2); } }
+    @keyframes orb4 { from { transform: translate(0,0) scale(1); } to { transform: translate(-30px,-50px) scale(1.1); } }
 
     /* Dot grid */
     .hero::before {
@@ -165,9 +186,9 @@
 
     .hero-pill {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(125,216,154,0.08);
-      border: 1px solid rgba(125,216,154,0.2);
-      color: var(--g5); font-size: 11px; font-weight: 700;
+      background: rgba(201,151,58,0.09);
+      border: 1px solid rgba(201,151,58,0.25);
+      color: var(--amber-lit); font-size: 11px; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase;
       padding: 6px 14px; border-radius: 100px;
       margin-bottom: 40px; cursor: default;
@@ -175,12 +196,12 @@
     }
     .hero-pill-dot {
       width: 6px; height: 6px; border-radius: 50%;
-      background: var(--g5);
+      background: var(--amber-lit);
       animation: blink 2.5s ease infinite;
     }
     @keyframes blink {
-      0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(125,216,154,.5); }
-      60% { opacity:.5; box-shadow:0 0 0 5px rgba(125,216,154,0); }
+      0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(201,151,58,.5); }
+      60% { opacity:.5; box-shadow:0 0 0 5px rgba(201,151,58,0); }
     }
 
     .hero-h1 {
@@ -197,7 +218,7 @@
 
     .hero-h1 em {
       font-style: italic;
-      background: linear-gradient(135deg, #7dd89a 0%, #3da85a 50%, #a8f0be 100%);
+      background: linear-gradient(135deg, #7dd89a 0%, #e0b455 40%, #7dd89a 70%, #a8f0be 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -245,7 +266,7 @@
       background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, transparent 60%);
       opacity: 0; transition: opacity .25s;
     }
-    .btn-hero:hover { background: var(--g3); box-shadow: 0 0 40px rgba(29,107,53,.6), 0 8px 32px rgba(0,0,0,.4); }
+    .btn-hero:hover { background: var(--g3); box-shadow: 0 0 40px rgba(29,107,53,.5), 0 0 60px rgba(201,151,58,.12), 0 8px 32px rgba(0,0,0,.4); }
     .btn-hero:hover::before { opacity:1; }
 
     .btn-ghost-hero {
@@ -330,6 +351,7 @@
       box-shadow: 0 20px 56px rgba(0,0,0,.4);
       font-size: 12px; font-weight: 700; color: var(--g2);
       white-space: nowrap; animation: float 4s ease-in-out infinite;
+      border-left: 3px solid var(--amber);
     }
     .m-tag-sub { font-size: 10px; font-weight: 500; color: #536557; margin-top: 2px; }
 
@@ -372,6 +394,7 @@
     .td-item { display: inline-flex; align-items: center; gap: 12px; padding: 20px 38px; white-space: nowrap; border-right: 1px solid rgba(255,255,255,.05); }
     .td-key { font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.25); flex-shrink: 0; }
     .td-val { font-size: 16px; font-weight: 800; color: var(--g5); letter-spacing: -.4px; font-variant-numeric: tabular-nums; line-height: 1; }
+    .td-val.warm { color: var(--amber-lit); }
     .td-desc { font-size: 11px; color: rgba(255,255,255,.3); padding-left: 2px; }
 
     /* ─── SHARED ─── */
@@ -384,6 +407,8 @@
     .section-label::before { content:''; display:block; width:20px; height:2px; background: var(--g5); border-radius:2px; }
     .section-label.dim { color: rgba(255,255,255,.3); }
     .section-label.dim::before { background: rgba(255,255,255,.2); }
+    .section-label.warm { color: var(--amber-lit); }
+    .section-label.warm::before { background: var(--amber-lit); }
 
     .display {
       font-family: 'DM Serif Display', serif;
@@ -928,6 +953,7 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
   <div class="hero-wrap">
     <div class="hero-l">
       <div class="fl-live-msg">
@@ -1040,30 +1066,30 @@
 <div class="ticker-wrap">
   <div class="ticker-track">
     <span class="td-item"><span class="td-key">Personal Allowance</span><span class="td-val">£12,570</span><span class="td-desc">Tax-free income every year — Freelax tracks every penny of it.</span></span>
-    <span class="td-item"><span class="td-key">Higher Rate Threshold</span><span class="td-val">£50,270</span><span class="td-desc">Cross this and income tax jumps to 40%. Know before you invoice.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Threshold</span><span class="td-val warm">£50,270</span><span class="td-desc">Cross this and income tax jumps to 40%. Know before you invoice.</span></span>
     <span class="td-item"><span class="td-key">Dividend Allowance</span><span class="td-val">£500</span><span class="td-desc">Tax-free dividends for Ltd directors. Freelax optimises your split.</span></span>
     <span class="td-item"><span class="td-key">Basic Rate Tax</span><span class="td-val">20%</span><span class="td-desc">On income between £12,571 and £50,270. 2026/27 rates.</span></span>
-    <span class="td-item"><span class="td-key">Higher Rate Tax</span><span class="td-val">40%</span><span class="td-desc">On everything above £50,270. Most freelancers don't see it coming.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Tax</span><span class="td-val warm">40%</span><span class="td-desc">On everything above £50,270. Most freelancers don't see it coming.</span></span>
     <span class="td-item"><span class="td-key">Class 4 NI</span><span class="td-val">9%</span><span class="td-desc">On self-employed profits between £12,570–£50,270. On top of income tax.</span></span>
-    <span class="td-item"><span class="td-key">Self Assessment</span><span class="td-val">31 Jan</span><span class="td-desc">The deadline that catches UK freelancers every single year.</span></span>
+    <span class="td-item"><span class="td-key">Self Assessment</span><span class="td-val warm">31 Jan</span><span class="td-desc">The deadline that catches UK freelancers every single year.</span></span>
     <span class="td-item"><span class="td-key">Tax Year Start</span><span class="td-val">6 Apr</span><span class="td-desc">The clock resets. Freelax resets with it.</span></span>
     <span class="td-item"><span class="td-key">Trading Allowance</span><span class="td-val">£1,000</span><span class="td-desc">Earn up to this with no tax and no Self Assessment form required.</span></span>
     <span class="td-item"><span class="td-key">Corp Tax (Small Profits)</span><span class="td-val">19%</span><span class="td-desc">On Ltd company profits up to £50k. Freelax calculates it live.</span></span>
     <span class="td-item"><span class="td-key">MTD Submissions</span><span class="td-val">4× / year</span><span class="td-desc">Quarterly digital returns. Mandatory for all. Freelax files them.</span></span>
-    <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
+    <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val warm">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
     <!-- duplicate for seamless loop -->
     <span class="td-item"><span class="td-key">Personal Allowance</span><span class="td-val">£12,570</span><span class="td-desc">Tax-free income every year — Freelax tracks every penny of it.</span></span>
-    <span class="td-item"><span class="td-key">Higher Rate Threshold</span><span class="td-val">£50,270</span><span class="td-desc">Cross this and income tax jumps to 40%. Know before you invoice.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Threshold</span><span class="td-val warm">£50,270</span><span class="td-desc">Cross this and income tax jumps to 40%. Know before you invoice.</span></span>
     <span class="td-item"><span class="td-key">Dividend Allowance</span><span class="td-val">£500</span><span class="td-desc">Tax-free dividends for Ltd directors. Freelax optimises your split.</span></span>
     <span class="td-item"><span class="td-key">Basic Rate Tax</span><span class="td-val">20%</span><span class="td-desc">On income between £12,571 and £50,270. 2026/27 rates.</span></span>
-    <span class="td-item"><span class="td-key">Higher Rate Tax</span><span class="td-val">40%</span><span class="td-desc">On everything above £50,270. Most freelancers don't see it coming.</span></span>
+    <span class="td-item"><span class="td-key">Higher Rate Tax</span><span class="td-val warm">40%</span><span class="td-desc">On everything above £50,270. Most freelancers don't see it coming.</span></span>
     <span class="td-item"><span class="td-key">Class 4 NI</span><span class="td-val">9%</span><span class="td-desc">On self-employed profits between £12,570–£50,270. On top of income tax.</span></span>
-    <span class="td-item"><span class="td-key">Self Assessment</span><span class="td-val">31 Jan</span><span class="td-desc">The deadline that catches UK freelancers every single year.</span></span>
+    <span class="td-item"><span class="td-key">Self Assessment</span><span class="td-val warm">31 Jan</span><span class="td-desc">The deadline that catches UK freelancers every single year.</span></span>
     <span class="td-item"><span class="td-key">Tax Year Start</span><span class="td-val">6 Apr</span><span class="td-desc">The clock resets. Freelax resets with it.</span></span>
     <span class="td-item"><span class="td-key">Trading Allowance</span><span class="td-val">£1,000</span><span class="td-desc">Earn up to this with no tax and no Self Assessment form required.</span></span>
     <span class="td-item"><span class="td-key">Corp Tax (Small Profits)</span><span class="td-val">19%</span><span class="td-desc">On Ltd company profits up to £50k. Freelax calculates it live.</span></span>
     <span class="td-item"><span class="td-key">MTD Submissions</span><span class="td-val">4× / year</span><span class="td-desc">Quarterly digital returns. Mandatory for all. Freelax files them.</span></span>
-    <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
+    <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val warm">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
   </div>
 </div>
 
@@ -1073,7 +1099,7 @@
 <div class="problem">
   <div class="problem-in">
     <div class="problem-header reveal">
-      <div class="section-label">The problem</div>
+      <div class="section-label warm">The problem</div>
       <h2 class="display" style="margin-bottom:14px;">Most UK freelancers are<br/>flying <em>completely blind.</em></h2>
       <p class="lead">You send invoices, pay tax in January, and hope for the best. Freelax changes all of that.</p>
     </div>
@@ -1525,7 +1551,7 @@
 <div class="testimonials">
   <div class="testimonials-in">
     <div class="t-header">
-      <div class="section-label reveal">From UK freelancers</div>
+      <div class="section-label warm reveal">From UK freelancers</div>
       <h2 class="display reveal d1" style="max-width:480px;">Built for people who<br/><em>work for themselves.</em></h2>
     </div>
     <div class="t-grid">
