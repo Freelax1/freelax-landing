@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Freelax — Know exactly what you owe. Every month.</title>
-  <meta name="description" content="Real-time UK tax calculations, professional invoicing, IR35 tracking and MTD compliance for freelancers, contractors and limited company directors." />
+  <meta name="description" content="Real-time UK tax calculations, professional invoicing and IR35 tracking for freelancers, contractors and limited company directors." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
@@ -555,20 +555,6 @@
     .ir35-fl { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -.2px; }
     .ir35-fv { font-family: 'DM Serif Display', serif; font-size: 32px; color: #fb7185; letter-spacing: -1px; }
 
-    /* ─── MTD ─── */
-    .mtd { background: var(--bg3); padding: 100px 6%; position: relative; overflow: hidden; }
-    .mtd::before {
-      content: '';
-      position: absolute; right: -80px; top: -80px;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(29,107,53,.28) 0%, transparent 65%);
-      filter: blur(60px); pointer-events: none;
-    }
-    .mtd-in { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; position: relative; z-index: 1; }
-    .mtd-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(125,216,154,.08); border: 1px solid rgba(125,216,154,.2); color: var(--g5); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 6px 14px; border-radius: 100px; margin-bottom: 20px; }
-    .mtd-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 3.2vw, 48px); color: var(--ink); letter-spacing: -2px; line-height: 1.08; margin-bottom: 16px; }
-    .mtd-desc { font-size: 15px; line-height: 1.8; color: var(--muted); max-width: 520px; }
-
     /* ─── PRICING ─── */
     .pricing { background: var(--bg2); padding: 120px 6%; }
     .pricing-in { max-width: 1200px; margin: 0 auto; }
@@ -835,7 +821,6 @@
       .ir35-in { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: repeat(2,1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; }
-      .mtd-in { grid-template-columns: 1fr; }
       .problem-grid { grid-template-columns: 1fr; }
     }
 
@@ -865,7 +850,6 @@
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
       <li><a href="#ir35">IR35</a></li>
-      <li><a href="#mtd">MTD</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="product.html">Product</a></li>
     </ul>
@@ -896,7 +880,7 @@
         Your financial <em>co-pilot</em>
       </h1>
 
-      <p class="hero-sub" id="hs">Real-time UK tax calculations, professional invoicing, IR35 tracking and Making Tax Digital compliance — all in one place. No surprises. No spreadsheets.</p>
+      <p class="hero-sub" id="hs">Real-time UK tax calculations, professional invoicing and IR35 tracking — all in one place. No surprises. No spreadsheets.</p>
 
       <div class="hero-btns" id="hb">
         <a class="btn-hero mag" href="https://app.freelax.co.uk/auth/signup">Get started free <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4"/></svg></a>
@@ -991,7 +975,6 @@
     <span class="td-item"><span class="td-key">Tax Year Start</span><span class="td-val">6 Apr</span><span class="td-desc">The clock resets. Freelax resets with it.</span></span>
     <span class="td-item"><span class="td-key">Trading Allowance</span><span class="td-val">£1,000</span><span class="td-desc">Earn up to this with no tax and no Self Assessment form required.</span></span>
     <span class="td-item"><span class="td-key">Corp Tax (Small Profits)</span><span class="td-val">19%</span><span class="td-desc">On Ltd company profits up to £50k. Freelax calculates it live.</span></span>
-    <span class="td-item"><span class="td-key">MTD Submissions</span><span class="td-val">4× / year</span><span class="td-desc">Quarterly digital returns. Mandatory for all. Freelax files them.</span></span>
     <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val warm">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
     <!-- duplicate for seamless loop -->
     <span class="td-item"><span class="td-key">Personal Allowance</span><span class="td-val">£12,570</span><span class="td-desc">Tax-free income every year — Freelax tracks every penny of it.</span></span>
@@ -1004,7 +987,6 @@
     <span class="td-item"><span class="td-key">Tax Year Start</span><span class="td-val">6 Apr</span><span class="td-desc">The clock resets. Freelax resets with it.</span></span>
     <span class="td-item"><span class="td-key">Trading Allowance</span><span class="td-val">£1,000</span><span class="td-desc">Earn up to this with no tax and no Self Assessment form required.</span></span>
     <span class="td-item"><span class="td-key">Corp Tax (Small Profits)</span><span class="td-val">19%</span><span class="td-desc">On Ltd company profits up to £50k. Freelax calculates it live.</span></span>
-    <span class="td-item"><span class="td-key">MTD Submissions</span><span class="td-val">4× / year</span><span class="td-desc">Quarterly digital returns. Mandatory for all. Freelax files them.</span></span>
     <span class="td-item"><span class="td-key">IR35 Wrong Status</span><span class="td-val warm">£23k/yr</span><span class="td-desc">Average cost of getting IR35 wrong. Most freelancers never check.</span></span>
   </div>
 </div>
@@ -1102,15 +1084,6 @@
         <div class="feat-title">Expense tracking</div>
         <div class="feat-desc">Scan receipts with AI, categorise correctly for HMRC and watch your tax bill reduce in real time. HMRC-ready CSV and Excel exports.</div>
         <div class="feat-tip">⚡ AI finds categories you'd miss — saves £340 on average.</div>
-      </div>
-      <div class="feat reveal d2">
-        <div class="feat-line"></div>
-        <div class="feat-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <div class="feat-title">Making Tax Digital</div>
-        <div class="feat-desc">MTD is mandatory for sole traders over £50k. Freelax is building direct HMRC integration so you submit quarterly returns without leaving the app.</div>
-        <div class="feat-tip">⚡ Quarterly submissions straight to HMRC — no portal, no stress.</div>
       </div>
       <div class="feat reveal d3">
         <div class="feat-line"></div>
@@ -1261,22 +1234,6 @@
 
 <div class="sec-div"></div>
 
-<!-- MTD -->
-<div class="mtd" id="mtd">
-  <div class="mtd-in">
-    <div class="reveal">
-      <div class="mtd-pill">🏛 Making Tax Digital — Coming Soon</div>
-      <div class="mtd-title">Submit quarterly returns<br/>directly to HMRC.</div>
-      <p class="mtd-desc">MTD for ITSA is now mandatory for sole traders earning over £50,000. Freelax is building direct HMRC Government Gateway integration — quarterly updates submitted without leaving the app.</p>
-    </div>
-    <div class="reveal d3">
-      <a href="mailto:hello@freelax.co.uk?subject=Notify me when MTD is live" class="btn-hero mag" style="white-space:nowrap;">Get notified when live →</a>
-    </div>
-  </div>
-</div>
-
-<div class="sec-div"></div>
-
 <!-- TAX YEAR TIMELINE -->
 <div class="tl-sec">
   <div class="tl-in">
@@ -1381,7 +1338,6 @@
           <li>IR35 assessment</li>
           <li>Accountant access</li>
           <li>Recurring invoices</li>
-          <li>MTD submissions (coming soon)</li>
           <li>150 AI calls/month</li>
           <li>Priority support</li>
         </ul>
@@ -1430,13 +1386,6 @@
     </div>
     <div class="faq-item reveal d3">
       <div class="faq-q" onclick="toggleFaq(this)">
-        What is MTD and when do I need to worry about it?
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-a">Making Tax Digital for Income Tax Self Assessment (MTD for ITSA) requires sole traders and landlords with income over £50,000 to submit quarterly updates to HMRC digitally. It became mandatory in April 2026. Freelax is building direct HMRC integration — when live, you'll be able to submit from inside Freelax without touching the HMRC portal.</div>
-    </div>
-    <div class="faq-item reveal d4">
-      <div class="faq-q" onclick="toggleFaq(this)">
         Can I cancel anytime?
         <span class="faq-icon">+</span>
       </div>
@@ -1480,7 +1429,6 @@
           <li><a href="#">IR35 checker</a></li>
           <li><a href="#">Expenses</a></li>
           <li><a href="#">Quotes</a></li>
-          <li><a href="#">MTD</a></li>
         </ul>
       </div>
       <div class="fcol">
