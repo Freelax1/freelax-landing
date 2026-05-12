@@ -679,28 +679,6 @@
     .plan.hot .btn-plan-g:hover { background: var(--g4); box-shadow: 0 0 24px rgba(125,216,154,.4); }
 
     /* ─── TESTIMONIALS ─── */
-    .testimonials { background: var(--bg3); padding: 120px 6%; }
-    .testimonials-in { max-width: 1200px; margin: 0 auto; }
-    .t-header { margin-bottom: 56px; }
-    .t-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .t-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px;
-      position: relative; overflow: hidden;
-      transition: border-color .3s, transform .3s, box-shadow .3s;
-    }
-    .t-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(125,216,154,.1), transparent);
-    }
-    .t-card:hover { border-color: rgba(125,216,154,.25); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
-    .t-stars { color: var(--g5); font-size: 13px; letter-spacing: 2px; margin-bottom: 16px; }
-    .t-quote { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,.62); font-style: italic; margin-bottom: 24px; }
-    .t-author { display: flex; align-items: center; gap: 10px; }
-    .t-av { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; flex-shrink: 0; }
-    .t-name { font-size: 13px; font-weight: 700; color: white; letter-spacing: -.2px; }
-    .t-role { font-size: 11px; color: var(--muted); margin-top: 1px; }
-
     /* ─── FAQ ─── */
     .faq { background: var(--bg2); padding: 120px 6%; }
     .faq-in { max-width: 800px; margin: 0 auto; }
@@ -905,7 +883,6 @@
       .preview-top { grid-template-columns: 1fr; }
       .ir35-in { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: repeat(2,1fr); }
-      .t-grid { grid-template-columns: 1fr 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .mtd-in { grid-template-columns: 1fr; }
       .problem-grid { grid-template-columns: 1fr; }
@@ -916,7 +893,6 @@
       .features-grid { grid-template-columns: 1fr; }
       .numbers-in { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .t-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
       .ir35-stats { grid-template-columns: 1fr 1fr; }
@@ -1548,46 +1524,6 @@
     <span class="fl-band-tag">Freelax AI</span>
   </div>
 </div>
-
-<div class="sec-div"></div>
-
-<!-- TESTIMONIALS -->
-<div class="testimonials">
-  <div class="testimonials-in">
-    <div class="t-header">
-      <div class="section-label warm reveal">From UK freelancers</div>
-      <h2 class="display reveal d1" style="max-width:480px;">Built for people who<br/><em>work for themselves.</em></h2>
-    </div>
-    <div class="t-grid">
-      <div class="t-card reveal">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">"Before Freelax, I had no idea what I actually owed in tax until January. Now I know my exact bill every single month. The IR35 checker alone is worth it."</p>
-        <div class="t-author">
-          <div class="t-av" style="background:#1D6B35;">SJ</div>
-          <div><div class="t-name">Sarah Jenkins</div><div class="t-role">Freelance UX Designer · London</div></div>
-        </div>
-      </div>
-      <div class="t-card reveal d2">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">"I've been contracting for 8 years and always used spreadsheets. Freelax replaced everything in a weekend. The tax calculations are genuinely accurate — I checked against my accountant."</p>
-        <div class="t-author">
-          <div class="t-av" style="background:#2a7d42;">MK</div>
-          <div><div class="t-name">Michael K.</div><div class="t-role">IT Contractor · Manchester</div></div>
-        </div>
-      </div>
-      <div class="t-card reveal d4">
-        <div class="t-stars">★★★★★</div>
-        <p class="t-quote">"Finally a UK tool that actually understands Ltd company dividends. Everything else I tried was built for US freelancers and didn't handle the UK tax year properly."</p>
-        <div class="t-author">
-          <div class="t-av" style="background:#3da85a;">AL</div>
-          <div><div class="t-name">Aisha L.</div><div class="t-role">Ltd Company Director · Birmingham</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="sec-div"></div>
 
 <!-- FAQ -->
 <div class="faq">
