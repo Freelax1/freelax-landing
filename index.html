@@ -1249,6 +1249,10 @@
           <span class="calc-rl">Safe to spend (monthly)</span>
           <span class="calc-rv g" id="cr-spend">—</span>
         </div>
+        <div class="calc-result-row">
+          <span class="calc-rl">Effective tax rate</span>
+          <span class="calc-rv" id="cr-rate">—</span>
+        </div>
         <div class="calc-fl-msg">
           <div class="calc-fl-av">F</div>
           <div class="calc-fl-txt" id="calc-fl-txt">Enter your income above and I'll calculate your exact position.</div>
@@ -1785,7 +1789,7 @@
     setTimeout(typeFL, 1100);
   }
 
-  // ── UK TAX CALCULATOR ──
+  // ── UK TAX CALCULATOR (2026/27) ──
   let calcType = 'sole';
   function setCalcType(t) {
     calcType = t;
@@ -1793,56 +1797,121 @@
     document.getElementById('tog-ltd').classList.toggle('active', t === 'ltd');
     runCalc();
   }
+
   function ukTaxCalc(income, type) {
-    const PA = 12570, BR_TOP = 50270;
+    // 2026/27 rates
+    const PA_FULL = 12570;
+    const BR_LIMIT = 50270;
+    const PA_TAPER_START = 100000;
+    const PA_ZERO = 125140;        // PA fully gone above this
+
     if (type === 'sole') {
-      const t1 = Math.max(0, Math.min(income, BR_TOP) - PA) * 0.20;
-      const t2 = Math.max(0, income - BR_TOP) * 0.40;
-      const n1 = Math.max(0, Math.min(income, BR_TOP) - PA) * 0.09;
-      const n2 = Math.max(0, income - BR_TOP) * 0.02;
-      const total = Math.round(t1 + t2 + n1 + n2);
-      return { tax: total, monthly: Math.round(total / 12), spend: Math.round((income - total) / 12) };
+      // Personal Allowance — tapers £1 for every £2 over £100,000
+      const pa = income <= PA_TAPER_START
+        ? PA_FULL
+        : income >= PA_ZERO
+          ? 0
+          : PA_FULL - Math.floor((income - PA_TAPER_START) / 2);
+
+      // Income Tax bands applied to income after PA
+      const itax = Math.max(0, Math.min(income, BR_LIMIT) - pa) * 0.20
+                 + Math.max(0, Math.min(income, PA_ZERO) - Math.max(BR_LIMIT, pa)) * 0.40
+                 + Math.max(0, income - PA_ZERO) * 0.45;
+
+      // Class 4 NI — 6% on profits £12,570–£50,270 / 2% above (from 2024/25 onwards)
+      const ni = Math.max(0, Math.min(income, BR_LIMIT) - PA_FULL) * 0.06
+               + Math.max(0, income - BR_LIMIT) * 0.02;
+
+      const tax = Math.round(itax + ni);
+      const effective = income > 0 ? Math.round(tax / income * 100) : 0;
+      return {
+        tax, itax: Math.round(itax), ni: Math.round(ni),
+        monthly: Math.round(tax / 12),
+        spend: Math.round((income - tax) / 12),
+        effective
+      };
     } else {
+      // Ltd company: optimal salary (below employees' NI primary threshold)
       const sal = Math.min(income, 9100);
       const profit = Math.max(0, income - sal);
-      const ctRate = profit <= 50000 ? 0.19 : 0.19 + Math.min(profit - 50000, 200000) / 200000 * 0.06;
-      const ct = Math.round(profit * ctRate);
+
+      // Corporation Tax with marginal relief
+      let ct;
+      if (profit <= 50000)       ct = profit * 0.19;
+      else if (profit >= 250000) ct = profit * 0.25;
+      else                       ct = profit * 0.25 - (250000 - profit) * (3 / 200);
+      ct = Math.round(ct);
+
+      // Dividends after CT
       const divs = profit - ct;
-      const taxableDivs = Math.max(0, divs - 500);
-      const brRemain = Math.max(0, BR_TOP - sal);
-      const dt = Math.round(Math.min(taxableDivs, brRemain) * 0.0875 + Math.max(0, taxableDivs - brRemain) * 0.3375);
-      const total = ct + dt;
+      const taxableDivs = Math.max(0, divs - 500); // £500 dividend allowance
+      const brRemain = Math.max(0, BR_LIMIT - sal);
+      const basicDivs = Math.min(taxableDivs, brRemain);
+      const higherDivs = Math.max(0, taxableDivs - basicDivs);
+      const dt = Math.round(basicDivs * 0.0875 + higherDivs * 0.3375);
+
+      const tax = ct + dt;
       const takehome = sal + divs - dt;
-      return { tax: Math.round(total), monthly: Math.round(total / 12), spend: Math.round(takehome / 12) };
+      const effective = income > 0 ? Math.round(tax / income * 100) : 0;
+      return {
+        tax, ct, dt,
+        monthly: Math.round(tax / 12),
+        spend: Math.round(takehome / 12),
+        effective
+      };
     }
   }
+
   function gbp(n) { return '£' + Math.max(0, n).toLocaleString('en-GB'); }
+
+  function calcAdvisory(income, type, r) {
+    if (income === 0) return "Enter your income above and I'll calculate your exact UK tax position.";
+
+    if (income < PA_FULL_THRESHOLD()) {
+      return `Below the £12,570 Personal Allowance — no Income Tax this year. But one decent contract mid-year can push you over quickly. Worth tracking from day one.`;
+    }
+
+    if (type === 'sole') {
+      if (income <= 50270) {
+        return `Basic rate band. ${r.effective}% effective rate — Income Tax ${gbp(r.itax)} + NI ${gbp(r.ni)}. Set aside ${gbp(r.monthly)} on every invoice and January won't be a shock.`;
+      } else if (income < 100000) {
+        const ltdR = ukTaxCalc(income, 'ltd');
+        const saving = r.tax - ltdR.tax;
+        if (saving > 1500) {
+          return `You're in the 40% band. As a sole trader you owe ${gbp(r.tax)}/year — as a Ltd director, ${gbp(ltdR.tax)}. That's ~${gbp(saving)}/year difference. Worth a proper comparison.`;
+        }
+        return `40% band. ${r.effective}% effective rate — Income Tax ${gbp(r.itax)} + Class 4 NI ${gbp(r.ni)}. At this level I'd strongly recommend modelling a Ltd structure.`;
+      } else if (income < 125140) {
+        return `⚠ Personal Allowance is tapering. Between £100k–£125,140 your marginal rate is effectively 60% — 40% tax plus 20% on the lost allowance. Pension contributions are the most powerful way to reclaim it.`;
+      } else {
+        return `Additional rate band — 45% on income above £125,140, Personal Allowance fully withdrawn. ${r.effective}% effective rate. Pension, salary sacrifice and charitable giving are the key levers here.`;
+      }
+    } else {
+      if (income <= 12570) {
+        return `At this income a Ltd structure offers little advantage — the admin overhead likely outweighs any saving. Sole trader may be simpler.`;
+      }
+      const soleR = ukTaxCalc(income, 'sole');
+      const saving = soleR.tax - r.tax;
+      return `Corp tax ${gbp(r.ct)} + dividend tax ${gbp(r.dt)} = ${gbp(r.tax)}/year. ${r.effective}% effective rate vs ${soleR.effective}% as a sole trader${saving > 0 ? ` — saving ~${gbp(saving)}/year` : ''}.`;
+    }
+  }
+
+  function PA_FULL_THRESHOLD() { return 12570; }
+
   function runCalc() {
     const el = document.getElementById('calc-income');
     if (!el) return;
     const income = Math.max(0, parseInt(el.value) || 0);
     const r = ukTaxCalc(income, calcType);
-    document.getElementById('cr-tax').textContent = gbp(r.tax);
-    document.getElementById('cr-monthly').textContent = gbp(r.monthly);
-    document.getElementById('cr-spend').textContent = gbp(r.spend);
+    document.getElementById('cr-tax').textContent     = income ? gbp(r.tax)     : '—';
+    document.getElementById('cr-monthly').textContent = income ? gbp(r.monthly) : '—';
+    document.getElementById('cr-spend').textContent   = income ? gbp(r.spend)   : '—';
+    const rateEl = document.getElementById('cr-rate');
+    if (rateEl) rateEl.textContent = income ? r.effective + '%' : '—';
     const msgEl = document.getElementById('calc-fl-txt');
-    if (!msgEl) return;
-    if (income === 0) {
-      msgEl.textContent = "Enter your income above and I'll calculate your exact position.";
-    } else if (income < 12570) {
-      msgEl.textContent = "At this level you won't pay Income Tax, but tracking expenses now builds good habits — and your position can change mid-year.";
-    } else if (calcType === 'sole' && income >= 50000) {
-      const ltdR = ukTaxCalc(income, 'ltd');
-      const saving = r.tax - ltdR.tax;
-      if (saving > 0) {
-        msgEl.textContent = `As a sole trader at ${gbp(income)} you'd owe ${gbp(r.tax)}/year. Restructuring as a Ltd company could save you roughly ${gbp(saving)} — I can model both scenarios live inside the app.`;
-      } else {
-        msgEl.textContent = `At ${gbp(income)} you'll owe ${gbp(r.tax)}/year in tax. I'd set aside ${gbp(r.monthly)}/month — leaving you ${gbp(r.spend)}/month safe to spend.`;
-      }
-    } else {
-      msgEl.textContent = `At ${gbp(income)} as a ${calcType === 'sole' ? 'sole trader' : 'Ltd company director'}, set aside ${gbp(r.monthly)}/month for tax. That leaves you ${gbp(r.spend)}/month safe to spend — and I track every penny in real time.`;
-    }
+    if (msgEl) msgEl.textContent = calcAdvisory(income, calcType, r);
   }
+
   const calcInpEl = document.getElementById('calc-income');
   if (calcInpEl) {
     calcInpEl.addEventListener('input', runCalc);
